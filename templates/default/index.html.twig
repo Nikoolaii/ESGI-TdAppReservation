@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+<div>
+    <h1 class="text-3xl">Start now by create a new service</h1>
+    <a href="{{ url('app_service_new') }}" class="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded">Create a new service</a>
+</div>
+{% endblock %}
