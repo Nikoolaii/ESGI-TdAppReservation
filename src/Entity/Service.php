@@ -46,6 +46,9 @@ class Service
     #[ORM\Column]
     private ?int $duration = null;
 
+    #[ORM\Column]
+    private ?float $price = null;
+
     public function __construct()
     {
         $this->Category = new ArrayCollection();
@@ -179,6 +182,18 @@ class Service
     public function setDuration(int $duration): static
     {
         $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): static
+    {
+        $this->price = $price;
 
         return $this;
     }

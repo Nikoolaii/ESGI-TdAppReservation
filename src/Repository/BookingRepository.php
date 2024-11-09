@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Booking;
+use DateTimeInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,6 +15,19 @@ class BookingRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Booking::class);
+    }
+
+    public function findConflictingBookings(DateTimeInterface $start, DateTimeInterface $end, $serviceId)
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.Service = :serviceId')
+            ->andWhere('b.dateStart < :end')
+            ->andWhere('b.dateEnd > :start')
+            ->setParameter('serviceId', $serviceId)
+            ->setParameter('start', $start)
+            ->setParameter('end', $end)
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**

@@ -6,8 +6,8 @@
 <div class="container mx-auto px-4 py-8">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {% for service in services %}
-            <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                <div class="p-4">
+            <div class="bg-white shadow-md rounded-lg overflow-hidden flex flex-col h-full">
+                <div class="p-4 flex-grow">
                     <h2 class="text-xl font-bold mb-2">{{ service.title }}</h2>
                     <p class="text-gray-700 mb-4">{{ service.description }}</p>
                     <p class="text-gray-600"><strong>City:</strong> {{ service.city }}</p>
@@ -19,7 +19,9 @@
                             {{ category.name }}{% if not loop.last %}, {% endif %}
                         {% endfor %}
                     </p>
-                    <a href="{{ url('app_service_show', {'id': service.id}) }}" class="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded">See more</a>
+                </div>
+                <div class="p-4">
+                    <a href="{{ url('app_service_show', {'id': service.id}) }}" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-4">See more</a>
                 </div>
             </div>
         {% endfor %}
